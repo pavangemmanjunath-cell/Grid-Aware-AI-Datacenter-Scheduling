@@ -8,5 +8,5 @@ numpy>=1.24
 scipy>=1.11          # scipy.optimize.milp (HiGHS)
 pandas>=2.0
 # test-only
-pytest>=8.0
+pytest>=9.2.0
 httpx>=0.27          # fastapi.testclient
