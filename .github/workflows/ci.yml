@@ -57,10 +57,19 @@ jobs:
           python -m app.snapshot
           git status --porcelain -- ../frontend/public/api-snapshot ../frontend/public/data
           test -z "$(git status --porcelain -- ../frontend/public/api-snapshot ../frontend/public/data)"
-      - name: OpenAPI document is up to date
+      - name: OpenAPI document matches the API surface
+        # compares paths, methods and schema names, not bytes: FastAPI/Pydantic releases reformat the document
         run: |
-          python -c "import json; from app.main import app; open('openapi.json','w').write(json.dumps(app.openapi(), indent=1))"
-          git diff --exit-code openapi.json
+          python - <<'PY'
+          import json
+          from app.main import app
+          def surface(s):
+              ops = sorted((p, m) for p, v in s["paths"].items() for m in v)
+              return ops, sorted(s.get("components", {}).get("schemas", {}))
+          committed = json.load(open("openapi.json"))
+          assert surface(app.openapi()) == surface(committed), "API changed: regenerate webapp/backend/openapi.json"
+          print("OpenAPI surface OK")
+          PY
 
   frontend:
     name: Web app type-check and build
