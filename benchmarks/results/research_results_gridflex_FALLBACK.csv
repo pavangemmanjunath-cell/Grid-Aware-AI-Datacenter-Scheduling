@@ -1,0 +1,7 @@
+scenario,grid_energy_MWh,connection_capacity_MW,capacity_reduction_pct,operational_CO2_t,renewable_utilization_pct,average_workload_delay_h,jobs_shifted_pct,violation_energy_MWh
+R0 Grid-only reference,1395.500283,15.16339114,0,475.2303861,0,0,0,0
+R1 Renewable supply,673.6359375,12.58605567,16.9970915,249.4240026,94.92950857,0,0,0
+R2 Green-H2 assisted,662.6359375,10.5860548,30.186759,244.1925053,97.66921736,0,0,0
+R3 H2 + workload flexibility,662.6359371,8.943965912,41.0160575,244.3753781,97.66921736,0.4642857143,10.71428571,0
+R4 Non-firm connection envelope,662.6359375,10.7,29.43530969,244.338996,97.66921736,1.5,21.42857143,0
+R5 Phased connection envelope,662.6359375,10.61515369,29.99485673,244.5638926,97.66921736,0.1071428571,3.571428571,0

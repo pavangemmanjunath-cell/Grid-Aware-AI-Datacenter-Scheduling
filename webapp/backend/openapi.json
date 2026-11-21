@@ -1,0 +1,1712 @@
+{
+ "openapi": "3.1.0",
+ "info": {
+  "title": "QH2DC AI Data Centre Simulator API",
+  "description": "Grid-connection-aware scheduling of AI data centres with green hydrogen and quantum-assisted workload placement. Research software; the benchmark is synthetic.",
+  "license": {
+   "name": "Apache-2.0",
+   "url": "https://www.apache.org/licenses/LICENSE-2.0"
+  },
+  "version": "1.0.0"
+ },
+ "paths": {
+  "/api/meta": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "Title, citation, model version, seed, solver, banner text",
+    "operationId": "meta_api_meta_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/scenarios": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "Six scenario rows with the eight published result fields (Table 2)",
+    "operationId": "scenarios_api_scenarios_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/benchmark": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "168 hourly rows of the synthetic benchmark (Fig. 2)",
+    "operationId": "benchmark_api_benchmark_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/dispatch": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "168 hourly MILP dispatch rows for one scenario (Figs. 5-6)",
+    "operationId": "dispatch_api_dispatch_get",
+    "parameters": [
+     {
+      "name": "scenario",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "R0-R5",
+       "title": "Scenario"
+      },
+      "description": "R0-R5"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/jobs": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "28 flexible bundles with baseline and chosen hour for one scenario",
+    "operationId": "jobs_api_jobs_get",
+    "parameters": [
+     {
+      "name": "scenario",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "R0-R5",
+       "title": "Scenario"
+      },
+      "description": "R0-R5"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/qaoa": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "QUBO enumeration and QAOA statistics (Fig. 3, Table 3)",
+    "operationId": "qaoa_api_qaoa_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/components": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "Nine nodes and nine edges of the campus component graph",
+    "operationId": "components_api_components_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/components/{node_id}": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "One node: value at the hour, 168-h series, week total, peak, limits, fields used",
+    "operationId": "component_api_components__node_id__get",
+    "parameters": [
+     {
+      "name": "node_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Node Id"
+      }
+     },
+     {
+      "name": "scenario",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "null"
+        }
+       ],
+       "description": "R0-R5",
+       "title": "Scenario"
+      },
+      "description": "R0-R5"
+     },
+     {
+      "name": "hour",
+      "in": "query",
+      "required": false,
+      "schema": {
+       "type": "string",
+       "description": "integer 0-167",
+       "default": "0",
+       "title": "Hour"
+      },
+      "description": "integer 0-167"
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/download/{name}": {
+   "get": {
+    "tags": [
+     "research (read-only)"
+    ],
+    "summary": "Download a published data file",
+    "operationId": "download_api_download__name__get",
+    "parameters": [
+     {
+      "name": "name",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Name"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/health": {
+   "get": {
+    "tags": [
+     "meta"
+    ],
+    "summary": "Health",
+    "operationId": "health_api_v1_health_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Health"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/provenance": {
+   "get": {
+    "tags": [
+     "meta"
+    ],
+    "summary": "Data-file hashes and the origin of every number",
+    "operationId": "get_provenance_api_v1_provenance_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/benchmark": {
+   "get": {
+    "tags": [
+     "benchmark"
+    ],
+    "summary": "The 168-hour synthetic benchmark week",
+    "operationId": "benchmark_api_v1_benchmark_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/datasets": {
+   "get": {
+    "tags": [
+     "benchmark"
+    ],
+    "summary": "Public datasets for external validation (not used for the published numbers)",
+    "operationId": "datasets_api_v1_datasets_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/PublicDataset"
+         },
+         "type": "array",
+         "title": "Response Datasets Api V1 Datasets Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/scenarios": {
+   "get": {
+    "tags": [
+     "scenarios"
+    ],
+    "summary": "Scenarios",
+    "operationId": "scenarios_api_v1_scenarios_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/ScenarioSummary"
+         },
+         "type": "array",
+         "title": "Response Scenarios Api V1 Scenarios Get"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/scenarios/{key}": {
+   "get": {
+    "tags": [
+     "scenarios"
+    ],
+    "summary": "Published row plus the hour-by-hour solved schedule",
+    "operationId": "scenario_api_v1_scenarios__key__get",
+    "parameters": [
+     {
+      "name": "key",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Key"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/ScenarioDetail"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/simulations": {
+   "get": {
+    "tags": [
+     "simulations"
+    ],
+    "summary": "List Simulations",
+    "operationId": "list_simulations_api_v1_simulations_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "items": {
+          "$ref": "#/components/schemas/Job"
+         },
+         "type": "array",
+         "title": "Response List Simulations Api V1 Simulations Get"
+        }
+       }
+      }
+     }
+    }
+   },
+   "post": {
+    "tags": [
+     "simulations"
+    ],
+    "summary": "Start an exploratory what-if simulation (asynchronous)",
+    "operationId": "create_simulation_api_v1_simulations_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/WhatIfRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "202": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Job"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/simulations/{job_id}": {
+   "get": {
+    "tags": [
+     "simulations"
+    ],
+    "summary": "Get Simulation",
+    "operationId": "get_simulation_api_v1_simulations__job_id__get",
+    "parameters": [
+     {
+      "name": "job_id",
+      "in": "path",
+      "required": true,
+      "schema": {
+       "type": "string",
+       "title": "Job Id"
+      }
+     }
+    ],
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/Job"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/quantum/problem": {
+   "get": {
+    "tags": [
+     "quantum"
+    ],
+    "summary": "The 12-variable daily placement QUBO, enumerated exhaustively",
+    "operationId": "qubo_problem_api_v1_quantum_problem_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/QuboProblem"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/quantum/evaluate": {
+   "post": {
+    "tags": [
+     "quantum"
+    ],
+    "summary": "Exact QAOA state-vector statistics at given angles",
+    "operationId": "qaoa_evaluate_api_v1_quantum_evaluate_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/QaoaEvaluateRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/QaoaStatistics"
+        }
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/quantum/optimise": {
+   "post": {
+    "tags": [
+     "quantum"
+    ],
+    "summary": "Optimise QAOA angles from random restarts (exploratory; optimiser-dependent)",
+    "operationId": "qaoa_optimise_api_v1_quantum_optimise_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/QaoaOptimiseRequest"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/assistant": {
+   "get": {
+    "tags": [
+     "assistant"
+    ],
+    "summary": "Assistant Status",
+    "operationId": "assistant_status_api_v1_assistant_get",
+    "responses": {
+     "200": {
+      "description": "Successful Response",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/AssistantStatus"
+        }
+       }
+      }
+     }
+    }
+   }
+  },
+  "/api/v1/assistant/ask": {
+   "post": {
+    "tags": [
+     "assistant"
+    ],
+    "summary": "Assistant Ask",
+    "operationId": "assistant_ask_api_v1_assistant_ask_post",
+    "requestBody": {
+     "content": {
+      "application/json": {
+       "schema": {
+        "$ref": "#/components/schemas/AssistantQuestion"
+       }
+      }
+     },
+     "required": true
+    },
+    "responses": {
+     "501": {
+      "description": "No assistant provider configured",
+      "content": {
+       "application/json": {
+        "schema": {}
+       }
+      }
+     },
+     "422": {
+      "description": "Validation Error",
+      "content": {
+       "application/json": {
+        "schema": {
+         "$ref": "#/components/schemas/HTTPValidationError"
+        }
+       }
+      }
+     }
+    }
+   }
+  }
+ },
+ "components": {
+  "schemas": {
+   "AssistantQuestion": {
+    "properties": {
+     "question": {
+      "type": "string",
+      "maxLength": 2000,
+      "minLength": 3,
+      "title": "Question"
+     }
+    },
+    "type": "object",
+    "required": [
+     "question"
+    ],
+    "title": "AssistantQuestion"
+   },
+   "AssistantStatus": {
+    "properties": {
+     "enabled": {
+      "type": "boolean",
+      "title": "Enabled"
+     },
+     "provider": {
+      "type": "string",
+      "title": "Provider"
+     },
+     "message": {
+      "type": "string",
+      "title": "Message"
+     }
+    },
+    "type": "object",
+    "required": [
+     "enabled",
+     "provider",
+     "message"
+    ],
+    "title": "AssistantStatus"
+   },
+   "HTTPValidationError": {
+    "properties": {
+     "detail": {
+      "items": {
+       "$ref": "#/components/schemas/ValidationError"
+      },
+      "type": "array",
+      "title": "Detail"
+     }
+    },
+    "type": "object",
+    "title": "HTTPValidationError"
+   },
+   "Health": {
+    "properties": {
+     "status": {
+      "type": "string",
+      "const": "ok",
+      "title": "Status"
+     },
+     "version": {
+      "type": "string",
+      "title": "Version"
+     },
+     "benchmark_hours": {
+      "type": "integer",
+      "title": "Benchmark Hours"
+     }
+    },
+    "type": "object",
+    "required": [
+     "status",
+     "version",
+     "benchmark_hours"
+    ],
+    "title": "Health"
+   },
+   "HourlySeries": {
+    "properties": {
+     "grid_import_MW": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Grid Import Mw"
+     },
+     "electrolyser_MW": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Electrolyser Mw"
+     },
+     "fuel_cell_MW": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Fuel Cell Mw"
+     },
+     "curtailed_MW": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Curtailed Mw"
+     },
+     "h2_inventory_MWh": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "H2 Inventory Mwh"
+     },
+     "flexible_load_MW": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Flexible Load Mw"
+     },
+     "connection_cap_MW": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "number"
+        },
+        {
+         "type": "null"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Connection Cap Mw"
+     }
+    },
+    "type": "object",
+    "required": [
+     "grid_import_MW",
+     "electrolyser_MW",
+     "fuel_cell_MW",
+     "curtailed_MW",
+     "h2_inventory_MWh",
+     "flexible_load_MW",
+     "connection_cap_MW"
+    ],
+    "title": "HourlySeries"
+   },
+   "Job": {
+    "properties": {
+     "id": {
+      "type": "string",
+      "title": "Id"
+     },
+     "status": {
+      "$ref": "#/components/schemas/JobStatus"
+     },
+     "progress": {
+      "type": "number",
+      "maximum": 1.0,
+      "minimum": 0.0,
+      "title": "Progress"
+     },
+     "request": {
+      "$ref": "#/components/schemas/WhatIfRequest"
+     },
+     "created_utc": {
+      "type": "string",
+      "title": "Created Utc"
+     },
+     "finished_utc": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Finished Utc"
+     },
+     "runtime_s": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Runtime S"
+     },
+     "result": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/WhatIfResult"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "error": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Error"
+     }
+    },
+    "type": "object",
+    "required": [
+     "id",
+     "status",
+     "progress",
+     "request",
+     "created_utc"
+    ],
+    "title": "Job"
+   },
+   "JobStatus": {
+    "type": "string",
+    "enum": [
+     "queued",
+     "running",
+     "succeeded",
+     "failed"
+    ],
+    "title": "JobStatus"
+   },
+   "Metrics": {
+    "properties": {
+     "grid_energy_MWh": {
+      "type": "number",
+      "title": "Grid Energy Mwh"
+     },
+     "peak_import_MW": {
+      "type": "number",
+      "title": "Peak Import Mw"
+     },
+     "operational_CO2_t": {
+      "type": "number",
+      "title": "Operational Co2 T"
+     },
+     "renewable_utilization_pct": {
+      "type": "number",
+      "title": "Renewable Utilization Pct"
+     },
+     "curtailed_MWh": {
+      "type": "number",
+      "title": "Curtailed Mwh"
+     },
+     "electrolyser_MWh": {
+      "type": "number",
+      "title": "Electrolyser Mwh"
+     },
+     "fuel_cell_MWh": {
+      "type": "number",
+      "title": "Fuel Cell Mwh"
+     },
+     "average_workload_delay_h": {
+      "type": "number",
+      "title": "Average Workload Delay H"
+     },
+     "max_workload_delay_h": {
+      "type": "integer",
+      "title": "Max Workload Delay H"
+     },
+     "jobs_shifted_pct": {
+      "type": "number",
+      "title": "Jobs Shifted Pct"
+     },
+     "violation_energy_MWh": {
+      "type": "number",
+      "title": "Violation Energy Mwh"
+     },
+     "h2_terminal_MWh": {
+      "type": "number",
+      "title": "H2 Terminal Mwh"
+     }
+    },
+    "type": "object",
+    "required": [
+     "grid_energy_MWh",
+     "peak_import_MW",
+     "operational_CO2_t",
+     "renewable_utilization_pct",
+     "curtailed_MWh",
+     "electrolyser_MWh",
+     "fuel_cell_MWh",
+     "average_workload_delay_h",
+     "max_workload_delay_h",
+     "jobs_shifted_pct",
+     "violation_energy_MWh",
+     "h2_terminal_MWh"
+    ],
+    "title": "Metrics"
+   },
+   "PublicDataset": {
+    "properties": {
+     "name": {
+      "type": "string",
+      "title": "Name"
+     },
+     "signal": {
+      "type": "string",
+      "title": "Signal"
+     },
+     "url": {
+      "type": "string",
+      "title": "Url"
+     },
+     "doi": {
+      "anyOf": [
+       {
+        "type": "string"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Doi"
+     },
+     "licence": {
+      "type": "string",
+      "title": "Licence"
+     },
+     "commercial_use": {
+      "type": "string",
+      "title": "Commercial Use"
+     },
+     "access": {
+      "type": "string",
+      "title": "Access"
+     },
+     "used_in_published_results": {
+      "type": "boolean",
+      "title": "Used In Published Results"
+     },
+     "status": {
+      "type": "string",
+      "title": "Status"
+     },
+     "verified_utc": {
+      "type": "string",
+      "title": "Verified Utc"
+     }
+    },
+    "type": "object",
+    "required": [
+     "name",
+     "signal",
+     "url",
+     "doi",
+     "licence",
+     "commercial_use",
+     "access",
+     "used_in_published_results",
+     "status",
+     "verified_utc"
+    ],
+    "title": "PublicDataset"
+   },
+   "QaoaEvaluateRequest": {
+    "properties": {
+     "p": {
+      "type": "integer",
+      "maximum": 4.0,
+      "minimum": 1.0,
+      "title": "P",
+      "default": 1
+     },
+     "angles": {
+      "items": {
+       "type": "number",
+       "maximum": 1000.0,
+       "minimum": -1000.0
+      },
+      "type": "array",
+      "title": "Angles",
+      "description": "[gamma_1..gamma_p, beta_1..beta_p]"
+     },
+     "include_probabilities": {
+      "type": "boolean",
+      "title": "Include Probabilities",
+      "default": false
+     }
+    },
+    "type": "object",
+    "required": [
+     "angles"
+    ],
+    "title": "QaoaEvaluateRequest"
+   },
+   "QaoaOptimiseRequest": {
+    "properties": {
+     "p": {
+      "type": "integer",
+      "maximum": 3.0,
+      "minimum": 1.0,
+      "title": "P",
+      "default": 1
+     },
+     "restarts": {
+      "type": "integer",
+      "maximum": 20.0,
+      "minimum": 1.0,
+      "title": "Restarts",
+      "default": 5
+     },
+     "seed": {
+      "type": "integer",
+      "minimum": 0.0,
+      "title": "Seed",
+      "default": 7
+     },
+     "max_evals": {
+      "type": "integer",
+      "maximum": 1000.0,
+      "minimum": 50.0,
+      "title": "Max Evals",
+      "default": 600
+     }
+    },
+    "type": "object",
+    "title": "QaoaOptimiseRequest"
+   },
+   "QaoaStatistics": {
+    "properties": {
+     "p": {
+      "type": "integer",
+      "title": "P"
+     },
+     "angles": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Angles"
+     },
+     "expected_cost": {
+      "type": "number",
+      "title": "Expected Cost"
+     },
+     "feasible_mass_pct": {
+      "type": "number",
+      "title": "Feasible Mass Pct"
+     },
+     "optimum_probability_pct": {
+      "type": "number",
+      "title": "Optimum Probability Pct"
+     },
+     "most_probable_feasible_state": {
+      "type": "integer",
+      "title": "Most Probable Feasible State"
+     },
+     "most_probable_is_optimum": {
+      "type": "boolean",
+      "title": "Most Probable Is Optimum"
+     },
+     "optimality_gap": {
+      "type": "number",
+      "title": "Optimality Gap"
+     },
+     "most_probable_assignment_hours": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Most Probable Assignment Hours"
+     },
+     "probabilities": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "number"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Probabilities"
+     }
+    },
+    "type": "object",
+    "required": [
+     "p",
+     "angles",
+     "expected_cost",
+     "feasible_mass_pct",
+     "optimum_probability_pct",
+     "most_probable_feasible_state",
+     "most_probable_is_optimum",
+     "optimality_gap",
+     "most_probable_assignment_hours"
+    ],
+    "title": "QaoaStatistics"
+   },
+   "QuboProblem": {
+    "properties": {
+     "qubits": {
+      "type": "integer",
+      "title": "Qubits"
+     },
+     "basis_states": {
+      "type": "integer",
+      "title": "Basis States"
+     },
+     "bundles": {
+      "type": "integer",
+      "title": "Bundles"
+     },
+     "slots": {
+      "type": "integer",
+      "title": "Slots"
+     },
+     "baseline_hours": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Baseline Hours"
+     },
+     "candidate_hours": {
+      "items": {
+       "items": {
+        "type": "integer"
+       },
+       "type": "array"
+      },
+      "type": "array",
+      "title": "Candidate Hours"
+     },
+     "feasible_states": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Feasible States"
+     },
+     "best_state": {
+      "type": "integer",
+      "title": "Best State"
+     },
+     "best_energy": {
+      "type": "number",
+      "title": "Best Energy"
+     },
+     "best_assignment_hours": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Best Assignment Hours"
+     },
+     "energies": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "title": "Energies"
+     },
+     "published_angles": {
+      "additionalProperties": {
+       "items": {
+        "type": "number"
+       },
+       "type": "array"
+      },
+      "type": "object",
+      "title": "Published Angles"
+     }
+    },
+    "type": "object",
+    "required": [
+     "qubits",
+     "basis_states",
+     "bundles",
+     "slots",
+     "baseline_hours",
+     "candidate_hours",
+     "feasible_states",
+     "best_state",
+     "best_energy",
+     "best_assignment_hours",
+     "energies",
+     "published_angles"
+    ],
+    "title": "QuboProblem"
+   },
+   "ScenarioDetail": {
+    "properties": {
+     "key": {
+      "type": "string",
+      "title": "Key"
+     },
+     "label": {
+      "type": "string",
+      "title": "Label"
+     },
+     "description": {
+      "type": "string",
+      "title": "Description"
+     },
+     "published": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Published",
+      "description": "Row of data/research_results_gridflex.csv, verbatim"
+     },
+     "connection_capacity_MW": {
+      "type": "number",
+      "title": "Connection Capacity Mw"
+     },
+     "metrics": {
+      "$ref": "#/components/schemas/Metrics"
+     },
+     "bundle_delays_h": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Bundle Delays H"
+     },
+     "series": {
+      "$ref": "#/components/schemas/HourlySeries"
+     }
+    },
+    "type": "object",
+    "required": [
+     "key",
+     "label",
+     "description",
+     "published",
+     "connection_capacity_MW",
+     "metrics",
+     "bundle_delays_h",
+     "series"
+    ],
+    "title": "ScenarioDetail"
+   },
+   "ScenarioSummary": {
+    "properties": {
+     "key": {
+      "type": "string",
+      "title": "Key"
+     },
+     "label": {
+      "type": "string",
+      "title": "Label"
+     },
+     "description": {
+      "type": "string",
+      "title": "Description"
+     },
+     "published": {
+      "additionalProperties": {
+       "type": "number"
+      },
+      "type": "object",
+      "title": "Published",
+      "description": "Row of data/research_results_gridflex.csv, verbatim"
+     }
+    },
+    "type": "object",
+    "required": [
+     "key",
+     "label",
+     "description",
+     "published"
+    ],
+    "title": "ScenarioSummary"
+   },
+   "ValidationError": {
+    "properties": {
+     "loc": {
+      "items": {
+       "anyOf": [
+        {
+         "type": "string"
+        },
+        {
+         "type": "integer"
+        }
+       ]
+      },
+      "type": "array",
+      "title": "Location"
+     },
+     "msg": {
+      "type": "string",
+      "title": "Message"
+     },
+     "type": {
+      "type": "string",
+      "title": "Error Type"
+     }
+    },
+    "type": "object",
+    "required": [
+     "loc",
+     "msg",
+     "type"
+    ],
+    "title": "ValidationError"
+   },
+   "WhatIfMode": {
+    "type": "string",
+    "enum": [
+     "min-uniform-flexible",
+     "min-uniform",
+     "nonfirm",
+     "phased"
+    ],
+    "title": "WhatIfMode"
+   },
+   "WhatIfRequest": {
+    "properties": {
+     "mode": {
+      "$ref": "#/components/schemas/WhatIfMode",
+      "default": "min-uniform-flexible"
+     },
+     "electrolyser_mw": {
+      "type": "number",
+      "maximum": 20.0,
+      "minimum": 0.0,
+      "title": "Electrolyser Mw",
+      "default": 4.0
+     },
+     "fuel_cell_mw": {
+      "type": "number",
+      "maximum": 10.0,
+      "minimum": 0.0,
+      "title": "Fuel Cell Mw",
+      "default": 2.0
+     },
+     "h2_max_mwh": {
+      "type": "number",
+      "maximum": 200.0,
+      "minimum": 0.0,
+      "title": "H2 Max Mwh",
+      "default": 20.0
+     },
+     "h2_init_mwh": {
+      "type": "number",
+      "maximum": 200.0,
+      "minimum": 0.0,
+      "title": "H2 Init Mwh",
+      "default": 5.0
+     },
+     "eta_el": {
+      "type": "number",
+      "maximum": 0.95,
+      "minimum": 0.3,
+      "title": "Eta El",
+      "default": 0.72
+     },
+     "eta_fc": {
+      "type": "number",
+      "maximum": 0.8,
+      "minimum": 0.2,
+      "title": "Eta Fc",
+      "default": 0.55
+     },
+     "demand_scale": {
+      "type": "number",
+      "maximum": 1.5,
+      "minimum": 0.5,
+      "title": "Demand Scale",
+      "description": "scales latency-sensitive and delay-tolerant AI demand",
+      "default": 1.0
+     },
+     "solar_scale": {
+      "type": "number",
+      "maximum": 3.0,
+      "minimum": 0.0,
+      "title": "Solar Scale",
+      "default": 1.0
+     },
+     "wind_scale": {
+      "type": "number",
+      "maximum": 3.0,
+      "minimum": 0.0,
+      "title": "Wind Scale",
+      "default": 1.0
+     },
+     "workload_flexibility": {
+      "type": "boolean",
+      "title": "Workload Flexibility",
+      "description": "envelope modes only: allow bundles to move to later slots",
+      "default": true
+     },
+     "candidate_offsets_h": {
+      "items": {
+       "type": "integer"
+      },
+      "type": "array",
+      "title": "Candidate Offsets H",
+      "description": "slots each bundle may use, hours after its baseline; must start with 0",
+      "default": [
+       0,
+       3,
+       7
+      ]
+     },
+     "phased_levels_mw": {
+      "items": {
+       "type": "number"
+      },
+      "type": "array",
+      "maxItems": 3,
+      "minItems": 3,
+      "title": "Phased Levels Mw",
+      "default": [
+       8.7,
+       9.7,
+       10.7
+      ]
+     },
+     "nonfirm_normal_mw": {
+      "type": "number",
+      "maximum": 20.0,
+      "minimum": 1.0,
+      "title": "Nonfirm Normal Mw",
+      "default": 10.7
+     },
+     "nonfirm_reduced_mw": {
+      "type": "number",
+      "maximum": 20.0,
+      "minimum": 0.0,
+      "title": "Nonfirm Reduced Mw",
+      "default": 6.5
+     },
+     "nonfirm_start_hour": {
+      "type": "integer",
+      "maximum": 23.0,
+      "minimum": 0.0,
+      "title": "Nonfirm Start Hour",
+      "default": 8
+     },
+     "nonfirm_end_hour": {
+      "type": "integer",
+      "maximum": 23.0,
+      "minimum": 0.0,
+      "title": "Nonfirm End Hour",
+      "default": 14
+     }
+    },
+    "type": "object",
+    "title": "WhatIfRequest",
+    "description": "Exploratory run. Defaults equal the paper's benchmark configuration."
+   },
+   "WhatIfResult": {
+    "properties": {
+     "exploratory": {
+      "type": "boolean",
+      "const": true,
+      "title": "Exploratory",
+      "default": true
+     },
+     "disclaimer": {
+      "type": "string",
+      "title": "Disclaimer"
+     },
+     "feasible": {
+      "type": "boolean",
+      "title": "Feasible"
+     },
+     "connection_capacity_MW": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Connection Capacity Mw"
+     },
+     "reduction_vs_grid_only_pct": {
+      "anyOf": [
+       {
+        "type": "number"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Reduction Vs Grid Only Pct"
+     },
+     "metrics": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/Metrics"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     },
+     "bundle_delays_h": {
+      "anyOf": [
+       {
+        "items": {
+         "type": "integer"
+        },
+        "type": "array"
+       },
+       {
+        "type": "null"
+       }
+      ],
+      "title": "Bundle Delays H"
+     },
+     "series": {
+      "anyOf": [
+       {
+        "$ref": "#/components/schemas/HourlySeries"
+       },
+       {
+        "type": "null"
+       }
+      ]
+     }
+    },
+    "type": "object",
+    "required": [
+     "disclaimer",
+     "feasible",
+     "connection_capacity_MW",
+     "reduction_vs_grid_only_pct",
+     "metrics",
+     "bundle_delays_h",
+     "series"
+    ],
+    "title": "WhatIfResult"
+   }
+  }
+ },
+ "tags": [
+  {
+   "name": "meta",
+   "description": "Health, version and data provenance."
+  },
+  {
+   "name": "benchmark",
+   "description": "The synthetic 168-hour benchmark and public validation datasets."
+  },
+  {
+   "name": "scenarios",
+   "description": "The six published scenarios (R0-R5) with solved hourly schedules."
+  },
+  {
+   "name": "simulations",
+   "description": "Exploratory what-if runs. Results are not paper results."
+  },
+  {
+   "name": "quantum",
+   "description": "12-qubit placement QUBO and exact QAOA state-vector simulation."
+  },
+  {
+   "name": "assistant",
+   "description": "Language-model assistant extension point (disabled in this release)."
+  },
+  {
+   "name": "research (read-only)",
+   "description": "Versioned, cacheable data behind every dashboard view (/api/...)."
+  }
+ ]
+}

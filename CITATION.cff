@@ -1,0 +1,53 @@
+cff-version: 1.2.0
+message: "If you use this software in your research, please cite it using the metadata below."
+title: "QH2DC: Grid-Connection-Aware Scheduling of AI Data Centres with Green Hydrogen and Quantum-Assisted Workload Placement"
+type: software
+authors:
+  - family-names: "Manjunath"
+    given-names: "Pavan"
+    orcid: "https://orcid.org/0000-0002-2694-8807"
+version: "1.0.0"
+repository-code: "https://github.com/pavangemmanjunath-cell/Grid-Aware-AI-Datacenter-Scheduling"
+url: "https://github.com/pavangemmanjunath-cell/Grid-Aware-AI-Datacenter-Scheduling"
+license: "Apache-2.0"
+abstract: >-
+  Research software for minimising the grid connection capacity an AI
+  data-centre campus requires. A mixed-integer scheduler co-dispatches grid
+  import, an electrolyser, a hydrogen tank and a fuel cell together with the
+  placement of delay-tolerant AI workload bundles, under firm, phased and
+  non-firm (time-varying) connection envelopes; the smallest feasible uniform
+  capacity is found by bisection. The daily placement sub-problem is also
+  written as a 12-variable QUBO and solved with an exact state-vector QAOA,
+  verified against exhaustive enumeration. The repository contains the MATLAB
+  reference implementation, an independent Python/SciPy cross-check, a FastAPI
+  simulation service with a React/three.js web simulator, and a deterministic
+  synthetic 168-hour benchmark. No quantum advantage is claimed.
+keywords:
+  - AI data centre
+  - grid connection capacity
+  - non-firm connection
+  - green hydrogen
+  - workload flexibility
+  - mixed-integer linear programming
+  - QUBO
+  - QAOA
+  - energy systems optimisation
+  - reproducible research
+references:
+  - type: conference-paper
+    status: in-press
+    title: "Grid-Connection-Aware Scheduling of AI Data Centres with Green Hydrogen and Quantum-Assisted Workload Placement"
+    authors:
+      - family-names: "Manjunath"
+        given-names: "Pavan"
+        orcid: "https://orcid.org/0000-0002-2694-8807"
+      - family-names: "Prüfer"
+        given-names: "Thomas"
+      - given-names: "Gunaseelan"
+        family-names: "S"
+      - family-names: "Durai"
+        given-names: "Karthiganesh"
+      - family-names: "Chichili"
+        given-names: "Naveen Kumar Reddy"
+    collection-title: "International Conference on Machine Learning and Data Engineering (ICMLDE 2026)"
+    notes: "Accepted, paper ID ICMLDE-2026-1939. Proceedings to appear in Procedia Computer Science. DOI not yet available."

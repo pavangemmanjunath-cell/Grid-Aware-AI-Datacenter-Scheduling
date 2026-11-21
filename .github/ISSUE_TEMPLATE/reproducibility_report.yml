@@ -1,0 +1,48 @@
+name: Reproducibility report
+description: Report the outcome of reproducing the results on your system, successful or not.
+title: "[Repro]: "
+labels: ["reproducibility"]
+body:
+  - type: dropdown
+    id: path
+    attributes:
+      label: What did you run?
+      multiple: true
+      options:
+        - python scripts/crosscheck.py
+        - MATLAB main_qh2dc
+        - MATLAB qh2dc_verify_run + verify/check_run.py
+        - webapp/backend tests
+        - GNU Octave
+    validations:
+      required: true
+  - type: textarea
+    id: env
+    attributes:
+      label: Environment
+      description: OS, Python/MATLAB/Octave versions, toolboxes, solver, CPU.
+    validations:
+      required: true
+  - type: dropdown
+    id: outcome
+    attributes:
+      label: Outcome
+      options:
+        - All checks passed
+        - Some checks differ (details below)
+        - Could not run
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Output
+      description: Paste the PASS/FAIL summary.
+      render: text
+  - type: checkboxes
+    id: independence
+    attributes:
+      label: Relationship to the authors
+      description: Used to keep docs/research-impact.md accurate.
+      options:
+        - label: I am independent of the paper's authors and agree to be credited as an independent reproduction.

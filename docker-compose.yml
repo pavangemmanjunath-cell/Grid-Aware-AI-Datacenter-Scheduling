@@ -1,0 +1,20 @@
+# Not yet validated: the Docker daemon was unavailable when v1.0.0 was prepared.
+#   docker compose up --build      ->  web app on http://localhost:8080, API docs on http://localhost:8000/docs
+services:
+  api:
+    build:
+      context: .
+      dockerfile: webapp/backend/Dockerfile
+    environment:
+      QH2DC_CORS_ORIGINS: '["http://localhost:8080"]'
+      QH2DC_MAX_WORKERS: "2"
+    ports:
+      - "127.0.0.1:8000:8000"   # API reachable from this machine only; the web container proxies /api
+
+  web:
+    build:
+      context: webapp/frontend
+    depends_on:
+      - api
+    ports:
+      - "8080:8080"

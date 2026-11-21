@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+
+# Node / web
+node_modules/
+webapp/frontend/dist/
+*.tsbuildinfo
+
+# MATLAB / Octave
+*.asv
+*.mex*
+octave-workspace
+slprj/
+
+# Local runs and outputs (the shipped artefacts in data/ and figures/ stay tracked)
+data/research_results_verified.csv
+out/
+*.log
+
+# Environment and secrets — never commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Editors / OS
+.vscode/settings.json
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+.qh2dc_drive
+
+# Playwright
+webapp/frontend/test-results/
+webapp/frontend/playwright-report/
+webapp/frontend/blob-report/

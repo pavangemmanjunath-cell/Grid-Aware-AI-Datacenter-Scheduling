@@ -1,0 +1,182 @@
+{
+  "description": "Candidate public datasets for a future real-data study. NONE of them is connected to, downloaded by, or used by this software; the published results come only from the synthetic benchmark in this folder. Licences and access terms were checked against the providers' own pages on the date shown. Re-check terms before any use.",
+  "verified_utc": "2026-11-21",
+  "datasets": [
+    {
+      "name": "Alibaba clusterdata GPU traces (cluster-trace-gpu-v2020, -v2023, -v2025, -v2026; cluster-trace-v2026-GenAI)",
+      "signal": "AI workload: job arrivals, GPUs, durations",
+      "url": "https://github.com/alibaba/clusterdata",
+      "doi": null,
+      "licence": "No licence file; README: use allowed 'for research or study purpose'",
+      "commercial_use": "Unclear - research/study use only",
+      "access": "Download; no token for v2026",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Microsoft Philly traces",
+      "signal": "AI workload: DNN training job durations and utilisation",
+      "url": "https://github.com/msr-fiddle/philly-traces",
+      "doi": null,
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "MIT Supercloud Dataset",
+      "signal": "Measured GPU power per job (100 ms) with Slurm logs",
+      "url": "https://dcc.mit.edu",
+      "doi": null,
+      "licence": "CC BY-NC-ND 4.0",
+      "commercial_use": "No (non-commercial, no derivatives)",
+      "access": "Public S3 bucket, no sign-in (v1)",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Dataset of Generative AI Workload Power Profiles (NLR/NREL, OEDI 8651)",
+      "signal": "AI workload power profiles, whole-facility profiles",
+      "url": "https://data.openei.org/submissions/8651",
+      "doi": null,
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "LLM-PowerTrace (arXiv:2610.38315)",
+      "signal": "Time-resolved GPU power traces for AI compute",
+      "url": "https://arxiv.org/abs/2610.38315",
+      "doi": null,
+      "licence": "Paper CC BY 4.0; no data licence stated",
+      "commercial_use": "Unclear",
+      "access": "Data link returned 404 on 2026-11-21 - not yet available",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Data Server Energy Consumption Dataset (IEEE DataPort)",
+      "signal": "Server power calibration",
+      "url": "https://ieee-dataport.org/open-access/data-server-energy-consumption-dataset",
+      "doi": "10.21227/x6jw-m015",
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "PVGIS API v5.3 (EU JRC)",
+      "signal": "Hourly irradiance and PV output for any site",
+      "url": "https://re.jrc.ec.europa.eu/api/v5_3/PVcalc",
+      "doi": null,
+      "licence": "Free to use with no restrictions on results (PVGIS user manual)",
+      "commercial_use": "Yes",
+      "access": "No key; 30 calls/s per IP",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Renewables.ninja API",
+      "signal": "Hourly PV and wind output for any site",
+      "url": "https://www.renewables.ninja/documentation/api",
+      "doi": null,
+      "licence": "CC BY-NC 4.0",
+      "commercial_use": "No (non-commercial; contact provider)",
+      "access": "Anonymous or free token",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Photovoltaic power and weather parameters (IEEE DataPort)",
+      "signal": "Measured PV power and weather",
+      "url": "https://doi.org/10.21227/42v0-jz14",
+      "doi": "10.21227/42v0-jz14",
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Open Power System Data",
+      "signal": "European load and generation time series",
+      "url": "https://open-power-system-data.org/",
+      "doi": null,
+      "licence": "Varies per data package",
+      "commercial_use": "Check each package",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "NESO Carbon Intensity API (Great Britain)",
+      "signal": "Grid carbon intensity",
+      "url": "https://carbonintensity.org.uk/",
+      "doi": null,
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "No key",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Energy-Charts API (Fraunhofer ISE)",
+      "signal": "German/European generation, carbon-related signals, prices",
+      "url": "https://api.energy-charts.info",
+      "doi": null,
+      "licence": "CC BY 4.0 unless stated otherwise; some /price zones private and internal use only",
+      "commercial_use": "Yes for CC BY data; not for restricted price zones",
+      "access": "No key for public tier; 2 requests/min",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "ENTSO-E Transparency Platform",
+      "signal": "European load, generation, prices, congestion",
+      "url": "https://transparency.entsoe.eu/",
+      "doi": null,
+      "licence": "Open-data release by TSOs; current terms of use to be validated",
+      "commercial_use": "To be validated",
+      "access": "Registration + API token by e-mail request",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "Electricity Maps API (free tier)",
+      "signal": "Hourly carbon intensity per zone",
+      "url": "https://app.electricitymaps.com",
+      "doi": null,
+      "licence": "No data licence found; free tier limited",
+      "commercial_use": "To be validated (likely non-commercial)",
+      "access": "Account + key",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "LBNL Queued Up (2026 edition)",
+      "signal": "US interconnection-queue context (generation only, no load requests)",
+      "url": "https://emp.lbl.gov/queues",
+      "doi": null,
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    },
+    {
+      "name": "NREL/NLR Annual Technology Baseline (OEDI 8759)",
+      "signal": "Cost and performance projections incl. fuel cells and electrolysers",
+      "url": "https://data.openei.org/submissions/8759",
+      "doi": null,
+      "licence": "CC BY 4.0",
+      "commercial_use": "Yes (with attribution)",
+      "access": "Download",
+      "used_in_published_results": false,
+      "status": "Not connected"
+    }
+  ]
+}

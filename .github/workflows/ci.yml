@@ -1,0 +1,106 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  research:
+    name: Reproduction tests (Python ${{ matrix.python }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.11", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Data invariants, published-number checks, full Python reproduction (~1 min)
+        run: python -m pytest -q
+      - name: Examples run
+        run: |
+          python examples/01_inspect_benchmark.py
+          python examples/02_qubo_enumeration.py
+
+  backend:
+    name: API and engine parity
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: webapp/backend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt ruff
+      - name: Lint
+        run: ruff check app tests
+      - name: Tests
+        run: python -m pytest -q
+      - name: API snapshot is up to date with the data
+        run: |
+          python -m app.snapshot
+          git status --porcelain -- ../frontend/public/api-snapshot ../frontend/public/data
+          test -z "$(git status --porcelain -- ../frontend/public/api-snapshot ../frontend/public/data)"
+      - name: OpenAPI document is up to date
+        run: |
+          python -c "import json; from app.main import app; open('openapi.json','w').write(json.dumps(app.openapi(), indent=1))"
+          git diff --exit-code openapi.json
+
+  frontend:
+    name: Web app type-check and build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: webapp/frontend
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: webapp/frontend/package-lock.json
+      - run: npm ci
+      - run: npm run build
+      - name: Playwright acceptance tests (build specification checklist)
+        run: |
+          npx playwright install --with-deps chromium
+          npx playwright test
+
+  quantum:
+    name: Gate-level QAOA cross-check (PennyLane)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+      - run: python -m pip install -r requirements.txt -r requirements-quantum.txt
+      - run: python scripts/pennylane_crosscheck.py
+
+  citation:
+    name: Validate CITATION.cff
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m pip install cffconvert
+      - run: cffconvert --validate

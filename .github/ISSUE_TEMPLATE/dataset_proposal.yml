@@ -1,0 +1,41 @@
+name: Dataset adapter proposal
+description: Propose a public dataset to replace one of the synthetic benchmark signals.
+title: "[Data]: "
+labels: ["data"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Dataset name and URL
+    validations:
+      required: true
+  - type: dropdown
+    id: signal
+    attributes:
+      label: Signal it would replace
+      options:
+        - GPU / AI workload
+        - Solar or wind generation
+        - Grid carbon intensity
+        - Connection envelope / congestion
+        - Server power calibration
+    validations:
+      required: true
+  - type: input
+    id: licence
+    attributes:
+      label: Licence / terms of use
+      description: Redistribution must be allowed, or the adapter must download the data itself.
+    validations:
+      required: true
+  - type: textarea
+    id: mapping
+    attributes:
+      label: Proposed mapping to the benchmark schema
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Confirmation
+      options:
+        - label: The dataset contains no personal, confidential or proprietary data.
+          required: true

@@ -1,0 +1,23 @@
+[project]
+name = "qh2dc-simulator-api"
+version = "1.0.0"
+description = "FastAPI service for grid-connection-aware AI data-centre scheduling with green hydrogen and QUBO/QAOA placement"
+requires-python = ">=3.10"
+license = { text = "Apache-2.0" }
+authors = [{ name = "Pavan Manjunath" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 140
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]
+ignore = ["E741", "B008"]  # short loop names mirror the paper's notation; FastAPI Depends in defaults
+
+[tool.ruff.lint.per-file-ignores]
+# sparse-matrix assembly kept line-for-line comparable with verify/verify_python.py
+"app/engine/dispatch.py" = ["E702"]
+"app/api/research.py" = ["E501"]  # human-readable descriptions and the per-node spec table

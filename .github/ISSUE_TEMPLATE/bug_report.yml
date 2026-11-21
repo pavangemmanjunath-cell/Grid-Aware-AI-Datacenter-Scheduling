@@ -1,0 +1,78 @@
+name: Bug report
+description: Something does not work as documented.
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting. Please **do not** include credentials, personal data or confidential data.
+        Security issues go to the private advisory form instead.
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What went wrong?
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Component
+      options:
+        - MATLAB reference code (matlab/)
+        - Python cross-check (verify/, scripts/)
+        - Simulation engine / API (webapp/backend)
+        - Web app (webapp/frontend)
+        - Data (data/)
+        - Documentation
+        - CI / packaging
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Version or commit
+      placeholder: v1.0.0 or a commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Operating system and environment
+      description: OS, Python / MATLAB / Node versions, browser if relevant, solver (intlinprog / glpk / HiGHS / fallback).
+      placeholder: Ubuntu 24.04, Python 3.12.3, SciPy 1.15.3
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Exact commands or clicks, starting from a fresh clone.
+      placeholder: |
+        1. python -m pip install -r requirements.txt
+        2. python scripts/crosscheck.py
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs / output
+      description: Full error output. It is formatted as code automatically.
+      render: shell
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context

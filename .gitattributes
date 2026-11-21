@@ -1,0 +1,10 @@
+* text=auto
+*.m text eol=lf linguist-language=MATLAB
+*.py text eol=lf
+*.csv text eol=lf
+*.json text eol=lf
+*.png binary
+*.pdf binary
+webapp/frontend/public/data/qh2dc.json linguist-generated=true
+webapp/backend/openapi.json linguist-generated=true
+*.bat text eol=crlf

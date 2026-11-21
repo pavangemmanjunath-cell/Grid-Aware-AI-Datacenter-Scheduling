@@ -1,0 +1,62 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "MATLAB: check installation",
+      "type": "shell",
+      "command": "matlab",
+      "args": ["-batch", "disp(version); disp(matlabroot); disp(computer)"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "MATLAB: run full study (main_qh2dc)",
+      "detail": "Rewrites data/research_results_gridflex.csv and figures/gr1-gr6.",
+      "type": "shell",
+      "command": "matlab",
+      "args": ["-batch", "main_qh2dc"],
+      "options": { "cwd": "${workspaceFolder}/matlab" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "MATLAB: verification run (no CSV overwrite)",
+      "detail": "Executes the study and writes verify/qh2dc_run_actual.txt.",
+      "type": "shell",
+      "command": "matlab",
+      "args": ["-batch", "qh2dc_verify_run('qh2dc_run_actual.txt')"],
+      "options": { "cwd": "${workspaceFolder}/verify" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "Check: compare run against published reference",
+      "type": "shell",
+      "command": "python",
+      "args": ["verify/check_run.py"],
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    },
+    {
+      "label": "VERIFY ALL (run MATLAB, then compare)",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "MATLAB: verification run (no CSV overwrite)",
+        "Check: compare run against published reference"
+      ],
+      "group": { "kind": "test", "isDefault": true },
+      "problemMatcher": []
+    },
+    {
+      "label": "Check: LaTeX structure",
+      "type": "shell",
+      "command": "python",
+      "args": ["../verify/check_latex.py"],
+      "options": { "cwd": "${workspaceFolder}/latex" },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "dedicated" }
+    }
+  ]
+}

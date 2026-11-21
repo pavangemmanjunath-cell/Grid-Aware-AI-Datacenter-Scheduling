@@ -1,0 +1,60 @@
+name: Expert review
+description: Review an assumption, formulation or result as a domain expert (grid, hydrogen, data centres, optimisation, quantum).
+title: "[Review]: "
+labels: ["expert-review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reviewing. This repository uses a **synthetic, simulated 168-hour benchmark**; results describe the
+        mechanism, not any real site. Critical findings are welcome and will be answered in the open.
+        Please do not include confidential or proprietary information from your organisation.
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area of expertise
+      options:
+        - Grid connection / DSO-TSO planning
+        - Electrolysers, fuel cells, hydrogen
+        - Data-centre operations / AI workloads
+        - Optimisation (MILP, bisection)
+        - Quantum computing (QUBO / QAOA)
+        - Reproducibility / software
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: item
+    attributes:
+      label: What did you review?
+      description: File, equation, figure, dashboard view or assumption (e.g. docs/methodology.md, constant electrolyser efficiency).
+    validations:
+      required: true
+  - type: textarea
+    id: finding
+    attributes:
+      label: Finding
+      description: What is wrong, missing, unrealistic or unclear, and why it matters for the conclusions.
+    validations:
+      required: true
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Impact on the conclusions
+      options:
+        - Could change a headline result
+        - Changes interpretation or scope
+        - Clarity / documentation only
+    validations:
+      required: true
+  - type: textarea
+    id: suggestion
+    attributes:
+      label: Suggested correction, test or reference
+      description: References with DOIs are very helpful.
+  - type: checkboxes
+    id: independence
+    attributes:
+      label: Relationship to the authors
+      options:
+        - label: I am independent of the paper's authors (used only to keep docs/research-impact.md accurate).

@@ -1,0 +1,41 @@
+name: Research question
+description: Ask about the model, assumptions, results or an extension.
+title: "[Research]: "
+labels: ["research", "question"]
+body:
+  - type: textarea
+    id: question
+    attributes:
+      label: Research question
+    validations:
+      required: true
+  - type: dropdown
+    id: component
+    attributes:
+      label: Relevant component
+      options:
+        - Benchmark / data
+        - MILP scheduling model
+        - Capacity bisection
+        - Hydrogen subsystem
+        - Workload flexibility
+        - QUBO formulation
+        - QAOA simulation
+        - Metrics / evaluation
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: hypothesis
+    attributes:
+      label: Hypothesis or expectation
+  - type: textarea
+    id: experiment
+    attributes:
+      label: Experiment or reproduction information
+      description: Commands, parameters, seeds and results you obtained, if any.
+  - type: textarea
+    id: references
+    attributes:
+      label: References
+      description: Papers or software, with DOIs or URLs.
