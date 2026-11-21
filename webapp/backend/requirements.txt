@@ -2,7 +2,7 @@
 #   python -m pip install -r requirements.txt
 fastapi>=0.115,<1
 uvicorn[standard]>=0.32
-pydantic>=2.9,<3
+pydantic>=2.14.3,<3
 pydantic-settings>=2.6
 numpy>=1.24
 scipy>=1.11          # scipy.optimize.milp (HiGHS)
