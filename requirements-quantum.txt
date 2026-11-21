@@ -1,3 +1,3 @@
 # Optional: independent QAOA cross-check in a standard quantum SDK (scripts/pennylane_crosscheck.py).
 # Not needed for the reference code, the tests, the API or the web app.
-pennylane>=0.40      # Apache-2.0; tested 0.45.1
+pennylane>=0.45.1      # Apache-2.0; tested 0.45.1
