@@ -1,7 +1,7 @@
 # QH2DC simulation API (FastAPI).  Install from webapp/backend:
 #   python -m pip install -r requirements.txt
 fastapi>=0.115,<1
-uvicorn[standard]>=0.32
+uvicorn[standard]>=0.54.0
 pydantic>=2.9,<3
 pydantic-settings>=2.6
 numpy>=1.24
