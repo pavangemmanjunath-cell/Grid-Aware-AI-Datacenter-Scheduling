@@ -7,6 +7,7 @@ authors:
     given-names: "Pavan"
     orcid: "https://orcid.org/0000-0002-2694-8807"
 version: "1.0.0"
+date-released: "2026-11-21"
 repository-code: "https://github.com/pavangemmanjunath-cell/Grid-Aware-AI-Datacenter-Scheduling"
 url: "https://github.com/pavangemmanjunath-cell/Grid-Aware-AI-Datacenter-Scheduling"
 license: "Apache-2.0"

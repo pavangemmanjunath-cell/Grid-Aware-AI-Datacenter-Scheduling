@@ -6,7 +6,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
-## [1.0.0] - not yet released
+## [1.0.0] - 2026-11-21
 
 First public release accompanying the ICMLDE 2026 paper (ID 1939).
 
