@@ -6,6 +6,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/) and 
 
 ## [Unreleased]
 
+### Added
+- Live demo of the dashboard on GitHub Pages (https://pavangemmanjunath-cell.github.io/Grid-Aware-AI-Datacenter-Scheduling/) and a social preview image (`assets/social-preview.png`).
+
 ## [1.0.0] - 2026-11-21
 
 First public release accompanying the ICMLDE 2026 paper (ID 1939).

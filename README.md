@@ -12,8 +12,11 @@ Green Hydrogen and Quantum-Assisted Workload Placement* (Paper ID 1939)
 ![React · three.js](https://img.shields.io/badge/web-React%2019%20%C2%B7%20three.js-informational)
 ![Data: simulated](https://img.shields.io/badge/data-simulated%20168%20h-orange)
 [![ORCID](https://img.shields.io/badge/ORCID-0000--0002--2694--8807-a6ce39)](https://orcid.org/0000-0002-2694-8807)
+[![Live demo](https://img.shields.io/badge/live%20demo-open%20the%20dashboard-1f5fae)](https://pavangemmanjunath-cell.github.io/Grid-Aware-AI-Datacenter-Scheduling/)
 
 **How small a grid connection can an AI campus live with — and how many megawatts does each resource buy?**
+
+**[▶ Open the live dashboard](https://pavangemmanjunath-cell.github.io/Grid-Aware-AI-Datacenter-Scheduling/)** — runs in your browser, nothing to install
 
 <img src="assets/screenshots/01-campus.png" alt="Campus view of the research dashboard: component schematic of the AI campus with its hydrogen plant at hour 37 of scenario R4, five KPI cards and the ask-the-component card" width="920">
 
@@ -45,7 +48,7 @@ implementations under test. R2 CO₂ is 242.64 t, the schedule solved at the rep
 <tr>
 <td width="72%">
 
-**Quick links** — [Run it in one click](#quick-start) · [Dashboard tour](#web-application-demo) ·
+**Quick links** — [Live demo](https://pavangemmanjunath-cell.github.io/Grid-Aware-AI-Datacenter-Scheduling/) · [Run it in one click](#quick-start) · [Dashboard tour](#web-application-demo) ·
 [Methodology](docs/methodology.md) · [Data pipeline](docs/data-pipeline.md) · [Data flow](docs/data-flow.md) · [Reproducibility](docs/reproducibility.md) ·
 [Quantum layer](docs/quantum.md) · [Related work](docs/related-work.md) · [Limitations](docs/limitations.md) ·
 [Paper ↔ code](PAPER_CODE_ALIGNMENT.md) · [Cite](#software-citation)

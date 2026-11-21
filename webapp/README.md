@@ -63,6 +63,8 @@ described in [docs/data-pipeline.md](../docs/data-pipeline.md).
 
 ## Run
 
+**No install:** open the live demo at https://pavangemmanjunath-cell.github.io/Grid-Aware-AI-Datacenter-Scheduling/ (static mode: everything except the Design studio).
+
 **Windows, one click:** `START.bat` in the repository root (first run installs everything), `STOP.bat` to stop.
 
 **Any OS:**
