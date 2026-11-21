@@ -13,21 +13,21 @@ jobs:
   matlab:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: matlab-actions/setup-matlab@v2
+      - uses: actions/checkout@v7
+      - uses: matlab-actions/setup-matlab@v3
         with:
           products: Optimization_Toolbox
       - name: Verification run (does not overwrite data/)
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v3
         with:
           command: cd verify; addpath('../matlab'); qh2dc_verify_run('qh2dc_run_actual.txt')
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v7
         with:
           python-version: "3.12"
       - name: Compare with the published reference
         run: python verify/check_run.py
         continue-on-error: true   # QAOA p=2 is optimiser/release dependent; see docs/reproducibility.md
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         with:
           name: matlab-run
           path: verify/qh2dc_run_actual.txt
