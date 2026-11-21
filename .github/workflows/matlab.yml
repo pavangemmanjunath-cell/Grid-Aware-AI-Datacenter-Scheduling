@@ -18,7 +18,7 @@ jobs:
         with:
           products: Optimization_Toolbox
       - name: Verification run (does not overwrite data/)
-        uses: matlab-actions/run-command@v2
+        uses: matlab-actions/run-command@v3
         with:
           command: cd verify; addpath('../matlab'); qh2dc_verify_run('qh2dc_run_actual.txt')
       - uses: actions/setup-python@v5
